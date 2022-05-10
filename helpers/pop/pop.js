@@ -2,9 +2,6 @@
 // Removes the last element from an array and returns that element. This method changes the length of the array.
 
 // Describe('Remove and return the last element of an array, mutating it')
-// [].pop() => undefined // []
-// ['a', 'b', 'c'].pop() => 'c' // ['a', 'b']
-// [1, 2, {engineer: 'E'}].pop() => {engineer: 'E'} // [1, 2]
 
 export const popMethod = (arr) => {
   if (!Array.isArray(arr)) {

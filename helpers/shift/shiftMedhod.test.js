@@ -60,14 +60,4 @@ describe('Given different inputs I expect different outputs', () => {
       expect(result).toBe('Bach');
     });
   });
-
-  // describe('When the element is NaN', () => {
-  //   test('Should return false', () => {
-  //     // Inputs
-  //     const arr = arrayIsOk;
-  //     const result = someFunction(arr, element);
-  //     console.log(result);
-  //     expect(result).toBe(false);
-  //   });
-  // });
 });

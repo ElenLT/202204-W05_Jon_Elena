@@ -1,27 +1,19 @@
 import { unshiftMethod } from './unshift';
 
 describe('Given different inputs I expect different outputs', () => {
-  // invalid input cases
-  // they all respond to the condition !Array.isArray(arr)
   describe('When the arr is not an array', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const inputNull = null;
-      const result = unshiftMethod(inputNull);
-      expect(result).toBe();
-      const inputUndefined = undefined;
-      const resultB = unshiftMethod(inputUndefined);
-      expect(resultB).toBe();
-      const inputNaN = NaN;
-      const resultC = unshiftMethod(inputNaN);
-      expect(resultC).toBe();
-      const inputNumber = 1004114;
-      const resultD = unshiftMethod(inputNumber);
-      expect(resultD).toBe();
-      const inputObject = {};
-      const resultE = unshiftMethod(inputObject);
-      expect(resultE).toBe();
+    test('Shoud capture the error', () => {
+      expect(() => {
+        unshiftMethod(undefined); // Both null and undefined work as inputs;
+      }).toThrow(TypeError);
+    });
+    test('Shoud capture the error', () => {
+      expect(() => {
+        unshiftMethod({}); // Also 'number' or 'string' as inputs return the same error;
+      }).toThrow(TypeError);
     });
   });
+
   describe('When the input is one single item', () => {
     test('Should return the arr length after being mutated (+1) and print in the console the mutated arr', () => {
       const arr = ["I'm feeling lonely in the arr"];

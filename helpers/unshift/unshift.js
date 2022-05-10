@@ -3,13 +3,26 @@
 // Adds one or more elements to the beginning of an array and returns the new length of the array.
 
 export const unshiftMethod = (arr, ...itemsToUnshift) => {
-  // handle invalid inputs
-  // arr === null || arr === undefined || typeof arr !== 'object' || arr instanceof Array === false
   if (!Array.isArray(arr)) {
-    console.log(
-      `Invalid input: this function does not work on '${arr}'. Please use a valid array`
-    );
-    return;
+    // handle all invalid inputs and exceptions together
+
+    const myTypeError = new TypeError();
+
+    if (arr === null || arr === undefined) {
+      myTypeError.messageUX = `TypeError: Cannot read properties of '${arr}' (reading unshiftMethod)`;
+      console.log(myTypeError);
+      throw myTypeError;
+    }
+
+    if (
+      arr instanceof Object === true ||
+      typeof arr === 'number' ||
+      typeof arr === 'string'
+    ) {
+      myTypeError.messageIsNotAFunction = `TypeError: ${arr} is not a function`;
+      console.log(myTypeError);
+      throw myTypeError;
+    }
   }
 
   const arrTemp = [];
