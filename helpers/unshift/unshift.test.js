@@ -4,13 +4,19 @@ describe('Given different inputs I expect different outputs', () => {
   describe('When the arr is not an array', () => {
     test('Shoud capture the error', () => {
       expect(() => {
+        //   unshiftMethod(undefined); // Both null and undefined work as inputs;
+        // }).toThrow(
+        //   TypeError(
+        //     `TypeError: Cannot read properties of 'undefined' (reading unshiftMethod)`
+        //   )
+        // );
         unshiftMethod(undefined); // Both null and undefined work as inputs;
-      }).toThrow(TypeError);
+      }).toThrow(TypeError.message);
     });
     test('Shoud capture the error', () => {
       expect(() => {
         unshiftMethod({}); // Also 'number' or 'string' as inputs return the same error;
-      }).toThrow(TypeError);
+      }).toThrow(TypeError.message);
     });
   });
 
@@ -20,6 +26,10 @@ describe('Given different inputs I expect different outputs', () => {
       const input = 'I want to join. But only in the [0] index position';
       const result = unshiftMethod(arr, input);
       expect(result).toBe(2);
+      expect(arr).toEqual([
+        'I want to join. But only in the [0] index position',
+        "I'm feeling lonely in the arr",
+      ]);
     });
   });
   describe('When the arr has three and the input is one single item', () => {
