@@ -19,7 +19,7 @@ export const popMethod = (arr) => {
     const myTypeError = new TypeError();
 
     if (arr === null || arr === undefined) {
-      myTypeError.messageUX = `TypeError: Cannot read properties of '${arr}' (reading unshiftMethod)`;
+      myTypeError.messageUX = `TypeError: Cannot read properties of '${arr}' (reading popMethod)`;
       console.log(myTypeError);
       throw myTypeError;
     }

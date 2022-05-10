@@ -12,7 +12,7 @@ export const shiftMethod = (arr) => {
     const myTypeError = new TypeError();
 
     if (arr === null || arr === undefined) {
-      myTypeError.messageUX = `TypeError: Cannot read properties of '${arr}' (reading unshiftMethod)`;
+      myTypeError.messageUX = `TypeError: Cannot read properties of '${arr}' (reading shiftMethod)`;
       console.log(myTypeError);
       throw myTypeError;
     }
