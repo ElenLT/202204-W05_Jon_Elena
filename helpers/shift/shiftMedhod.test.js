@@ -2,39 +2,16 @@ import { shiftMethod } from './shiftMedhod';
 
 describe('Given different inputs I expect different outputs', () => {
   // invalid input cases
-  describe('When the input is not an array and is a null', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const input = null;
-      const result = shiftMethod(input);
-      expect(result).toBe();
+  describe('When the arr is not an array', () => {
+    test('Shoud capture the error', () => {
+      expect(() => {
+        shiftMethod(undefined); // Both null and undefined work as inputs;
+      }).toThrow(TypeError);
     });
-  });
-  describe('When the input is not an array and is undefined', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const input = undefined;
-      const result = shiftMethod(input);
-      expect(result).toBe();
-    });
-  });
-  describe('When the input is not an array and is a number', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const input = 10042014;
-      const result = shiftMethod(input);
-      expect(result).toBe();
-    });
-  });
-  describe('When the input is not an array and is a string', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const input = "I'm a lonely string";
-      const result = shiftMethod(input);
-      expect(result).toBe();
-    });
-  });
-  describe('When the input is not an array and is NaN', () => {
-    test('Shoud return nothing and print a console message', () => {
-      const input = NaN;
-      const result = shiftMethod(input);
-      expect(result).toBe();
+    test('Shoud capture the error', () => {
+      expect(() => {
+        shiftMethod('testing a string'); // Also 'number' or an object instance {} as inputs return the same error;
+      }).toThrow(TypeError);
     });
   });
 

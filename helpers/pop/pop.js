@@ -29,7 +29,7 @@ export const popMethod = (arr) => {
       typeof arr === 'number' ||
       typeof arr === 'string'
     ) {
-      myTypeError.messageIsNotAFunction = `TypeError: ${arr} is not a function`;
+      myTypeError.messageIsNotAFunction = `TypeError: '${arr}' is not a function`;
       console.log(myTypeError);
       throw myTypeError;
     }
