@@ -4,7 +4,6 @@
 
 export const mapMethod = (arr, modifyer) => {
   if (!Array.isArray(arr)) {
-    // handle all invalid inputs and exceptions together
     const myTypeError = new TypeError();
 
     if (arr === null || arr === undefined) {
