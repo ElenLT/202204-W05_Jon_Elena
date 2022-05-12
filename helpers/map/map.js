@@ -2,8 +2,7 @@
 //=====
 //creates a new array populated with the results of calling a provided function on every element in the calling array.
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const mapMethod = (arr, modifyer) => {
+export const mapMethod = (arr, modifyer) => {
   if (!Array.isArray(arr)) {
     // handle all invalid inputs and exceptions together
     const myTypeError = new TypeError();
@@ -32,5 +31,3 @@ const mapMethod = (arr, modifyer) => {
   }
   return newArray;
 };
-
-console.log(mapMethod(arr, '* 2'));
