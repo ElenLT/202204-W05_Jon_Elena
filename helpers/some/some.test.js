@@ -1,6 +1,7 @@
 import { someFunction } from './some';
 
 // TEST CASES
+//TODO: Refactor tests
 const arrayIsOk = [1, 2, 3];
 const testArrIsEmpty = [];
 const testElementIsNull = [null];
