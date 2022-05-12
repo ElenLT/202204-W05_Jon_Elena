@@ -1,73 +1,45 @@
-var newArray = arr.filter((item) => cond);
+import { filterMethod } from './filter';
 
+//var newArray = arr.filter((item) => cond);
 describe('Given different inputs I expect different outputs', () => {
   describe('When the arr is not an array', () => {
     test('Shoud capture the error', () => {
       expect(() => {
-        //   filterMethod(undefined); // Both null and undefined work as inputs;
-        // }).toThrow(
-        //   TypeError(
-        //     `TypeError: Cannot read properties of 'undefined' (reading filterMethod)`
-        //   )
-        // );
         filterMethod(undefined); // Both null and undefined work as inputs;
-      }).toThrow(TypeError.message);
-    });
-    test('Shoud capture the error', () => {
-      expect(() => {
-        filterMethod({}); // Also 'number' or 'string' as inputs return the same error;
       }).toThrow(TypeError.message);
     });
   });
 
-  describe('When the input is one single item', () => {
-    test('Should return the arr length after being mutated (+1) and print in the console the mutated arr', () => {
-      const arr = ["I'm feeling lonely in the arr"];
-      const input = 'I want to join. But only in the [0] index position';
-      const result = filterMethod(arr, input);
-      expect(result).toBe(2);
-      expect(arr).toEqual([
-        'I want to join. But only in the [0] index position',
-        "I'm feeling lonely in the arr",
-      ]);
-    });
-  });
-  describe('When the arr has three and the input is one single item', () => {
-    test('Should return 4 and print a console message with the mutated arr', () => {
-      const arr = ['arr0', 'arr1', 'arr2'];
-      const input = 'New input item to unshift';
-      const result = filterMethod(arr, input);
-      expect(result).toBe(4);
-    });
-  });
-  describe('When the arr has more than 1 element and the input is more than 1 item', () => {
-    test('Should return the array length and print a console message with the mutated arr', () => {
-      const arr = [4, 5, 6];
-      const inputOne = 1;
-      const inputTwo = 2;
-      const inputThree = 3;
-      const result = filterMethod(arr, inputOne, inputTwo, inputThree);
-      expect(result).toBe(6);
-    });
-  });
-  describe('When the arr is empty and the input is more than 1 item', () => {
-    test('Should return the array length and print a console message ', () => {
+  describe('When the array is empty', () => {
+    test('Should return an empty array', () => {
       const arr = [];
-      const inputOne = 1;
-      const inputTwo = 2;
-      const inputThree = 3;
-      const result = filterMethod(arr, inputOne, inputTwo, inputThree);
-      expect(result).toBe(3);
+      const cond = '> 6';
+      const result = filterMethod(arr, cond);
+      expect(result).toStrictEqual([]);
     });
   });
-  describe('When the arr is empty and the input >1', () => {
-    test('Should return the array length and print a console message ', () => {
-      const arr = [];
-      const inputOne = 1;
-      const inputTwo = 2;
-      const inputThree = 3;
-      const result = filterMethod(arr, inputOne, inputTwo, inputThree);
-      expect(result).toBe(3);
+  describe('When none of the elements of the array matches the condition', () => {
+    test('Should return an empty array', () => {
+      const arr = [1, 2, 3, 4, 7, 8, 9];
+      const cond = '=== 6';
+      const result = filterMethod(arr, cond);
+      expect(result).toStrictEqual([]);
+    });
+  });
+  describe('When the arr has more than 1 element that match the condition', () => {
+    test('Should return all the elements that match the condition', () => {
+      const arr = [1, 2, 3, 4, 7, 8, 9];
+      const cond = '> 4';
+      const result = filterMethod(arr, cond);
+      expect(result).toStrictEqual([7, 8, 9]);
+    });
+  });
+  describe('When the condition is empty', () => {
+    test('Should return an empty array', () => {
+      const arr = [1, 2, 3, 4, 7, 8, 9];
+      const cond = '';
+      const result = filterMethod(arr, cond);
+      expect(result).toStrictEqual([]);
     });
   });
 });

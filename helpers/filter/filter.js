@@ -1,21 +1,5 @@
-const array = [
-  'spray',
-  'limit',
-  'elite',
-  'exuberant',
-  'destruction',
-  'present',
-];
-
-const result = array.filter((item) => item.length > 6);
-
-//---------------------
-
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //dentro de la funcion para exportarlo luego después
-
-const filterMethod = (arr, cond) => {
+export const filterMethod = (arr, cond) => {
   if (!Array.isArray(arr)) {
-    // handle all invalid inputs and exceptions together
     const myTypeError = new TypeError();
 
     if (arr === null || arr === undefined) {
@@ -44,5 +28,3 @@ const filterMethod = (arr, cond) => {
   }
   return newArray;
 };
-
-console.log(filterMethod(arr, '> 6'));
