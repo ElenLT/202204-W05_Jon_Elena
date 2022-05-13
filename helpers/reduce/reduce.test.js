@@ -14,7 +14,33 @@ describe('Given different inputs I expect different outputs', () => {
       }).toThrow(TypeError.message);
     });
   });
-
+  // Exception, documented in MDN
+  describe("When the array is empty and there's no initial value", () => {
+    test('Shoud throw an exception', () => {
+      expect(() => {
+        reduceMethod([]);
+      }).toThrow('TypeError: Reduce of empty array with no initial value');
+    });
+  });
+  describe('When the array has an undefined or null item', () => {
+    test('Should return NaN', () => {
+      // const arr = [undefined, '27'];
+      const arr = ['27', null, 33];
+      const initialValue = null;
+      const result = reduceMethod(arr, initialValue);
+      initialValue
+        ? console.log(
+            '> arr:',
+            arr,
+            'initialValue:',
+            initialValue,
+            'result:',
+            result
+          )
+        : console.log('> arr:', arr, 'result:', result);
+      expect(result).toEqual(NaN);
+    });
+  });
   // valid cases
   describe('When the array is empty and exists an initial value (number)', () => {
     test('Should return the initial value', () => {
@@ -137,27 +163,7 @@ describe('Given different inputs I expect different outputs', () => {
             result
           )
         : console.log('> arr:', arr, 'result:', result);
-      expect(result).toEqual('abc'); // FIXME: This test is failing… but it works when tested in the js file
-      // expect(result).toEqual('bc'); // Is returning 'bc' but only here. Not in the js file
+      expect(result).toEqual('abc');
     });
   });
-  // describe('When the array has N length and I push Y items', () => {
-  //   test('Should return N + Y and arr should have N+Y items', () => {
-  //     const arr = ['Paul', 'Leto'];
-  //     const inputOne = 'Jessica';
-  //     const inputTwo = 'Alia';
-  //     const inputUndefined = undefined; // accepts all data types
-  //     const result = reduceMethod(arr, inputOne, inputTwo, inputUndefined);
-  //     console.log('result:', result, ' > arr:', arr);
-  //     expect(result).toBe(5);
-  //   });
-  // });
-  // describe('When the array has N length and I push nothing', () => {
-  //   test('Should return N and arr should have N+Y items', () => {
-  //     const arr = ['Arrakis', 'Caladan'];
-  //     const result = reduceMethod(arr);
-  //     console.log('result:', result, ' > arr:', arr);
-  //     expect(result).toBe(2);
-  //   });
-  // });
 });

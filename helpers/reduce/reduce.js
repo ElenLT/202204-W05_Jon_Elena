@@ -1,30 +1,20 @@
-const arrWithStrings = ['b', 'c'];
-const array = [1];
-const arrayEmpty = [];
-let initialValue = 0;
-
-function callbackFn(previous, current, index) {
-  const returns = previous + current;
-  console.log(
-    `array: ${array} · previous: ${previous} · current: ${current} · index: ${index} · returns: ${returns}`
-  ); // iterates
-  console.log(returns);
-  return returns;
-}
-
-// arrayEmpty.reduce(callbackFn, 1); // with previousValue
-// arrayEmpty.reduce(callbackFn); // with previousValue
+// reduce():
+// executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
 
 export const reduceMethod = (arr, initialValue) => {
   let result;
-  const myTypeError = new TypeError();
 
+  // error handling variables
+  const myTypeError = new TypeError();
+  let hasNaN = false;
+
+  // logic variables
   let previousValue = arr[0];
   let currentValue = arr[1];
   let currentIndex = 1;
 
   // if there's an initial value, the loop changes and so do the other values
-  if (typeof initialValue === 'number') {
+  if (typeof initialValue === 'number' || typeof initialValue === 'string') {
     previousValue = initialValue;
     currentValue = arr[0];
     currentIndex = 0;
@@ -50,22 +40,35 @@ export const reduceMethod = (arr, initialValue) => {
 
   if (Array.isArray(arr)) {
     for (let i = currentIndex; i < arr.length; i++) {
-      currentValue = arr[i];
-      result = previousValue + currentValue;
-      // console.log(
-      //   `arr: ${arr} · previous: ${previousValue} · current: ${currentValue} · [i]: ${i} · result: ${result}  `
-      // );
-      previousValue += arr[i];
+      if (arr[i] !== null || arr[i] !== undefined) {
+        currentValue = arr[i];
+        result = previousValue + currentValue;
+        // To validate and understand the WIP
+        // console.log(
+        //   `arr: ${arr} · previous: ${previousValue} · current: ${currentValue} · [i]: ${i} · result: ${result}  `
+        // );
+        previousValue += arr[i];
+      }
+
+      if (arr[i] === null || arr[i] === undefined) {
+        hasNaN = true;
+      }
     }
+
     // singular cases
     arr.length === 1 ? (result = arr[0]) : false;
+
     arr.length === 1 && initialValue ? (result = arr[0] + initialValue) : false;
+
     arr[0] === undefined ? (result = NaN) : false;
+
     arr[0] === null ? (result = 0) : false;
+
     // handle exception
     if (arr.length === 0 && !initialValue) {
       myTypeError.message =
         'TypeError: Reduce of empty array with no initial value';
+      console.log(myTypeError.message);
       throw myTypeError.message;
     }
 
@@ -73,14 +76,8 @@ export const reduceMethod = (arr, initialValue) => {
     arr.length === 0 ? (result = initialValue) : false;
   }
 
+  if (hasNaN) {
+    return NaN;
+  }
   return result;
 };
-
-// console.log(reduceMethod(array));
-// console.log(reduceMethod(array, 1));
-
-initialValue = 'a';
-console.log(reduceMethod(arrWithStrings, initialValue));
-console.log(arrWithStrings.reduce(callbackFn, initialValue));
-// console.log(``);
-// arrWithStrings.reduce(callbackFn, 1); // without previousValue
